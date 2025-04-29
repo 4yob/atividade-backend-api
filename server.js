@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const editoraRoutes = require("./src/routes/editoraRoutes");
 const heroiRoutes = require("./src/routes/heroiRoutes");
+const reportRoutes = require("./src/routes/reportRoutes");
 
 const path = require("path");
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api", editoraRoutes);
 app.use("/api", heroiRoutes);
+app.use("/api", reportRoutes)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
