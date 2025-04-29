@@ -10,6 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api", editoraRoutes);
+app.use("/api", heroiRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
