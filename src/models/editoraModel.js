@@ -6,13 +6,13 @@ const getPublishers = async () => {
 };
 
 const getPublisherById = async (id) => {
-    const result = await pool.query("SELECT * FROM publisher WHERE id = $1", [id]);
+    const result = await pool.query("SELECT * FROM publishers WHERE id = $1", [id]);
     return result.rows[0];
 };
 
 const createPublisher = async (name) => {
     const result = await pool.query(
-        "INSERT INTO houses (name) VALUES ($1) RETURNING *",
+        "INSERT INTO publishers (name) VALUES ($1) RETURNING *",
         [name]
     );
     return result.rows[0];
@@ -20,7 +20,7 @@ const createPublisher = async (name) => {
 
 const updatePublisher = async (id, name) => {
     const result = await pool.query(
-        "UPDATE publisher SET name = $1 WHERE id = $2 RETURNING *",
+        "UPDATE publishers SET name = $1 WHERE id = $2 RETURNING *",
         [name, id]
     );
     return result.rows[0];
