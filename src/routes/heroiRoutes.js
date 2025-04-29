@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const heroiController = require("../controllers/heroiController");
 const upload = require("../config/upload");
+const apiKeyMiddleware = require("../config/apiKey");
 
+router.use(apiKeyMiddleware);
 router.get("/heros", heroiController.getAllHeros);
 router.get("/heros/:id", heroiController.getHero);
 router.post("/heros", upload.single("photo"), heroiController.createHero);
