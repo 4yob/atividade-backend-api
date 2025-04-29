@@ -25,15 +25,18 @@ const getHeros = async (name) => {
 
 const getHeroById = async (id) => {
     const result = await pool.query(
-        `SELECT heros.*, publishers.name AS publisher_name FROM heros LEFT JOIN publishers ON heros.publisher_id = publishers.id WHERE heros.id = $1`, [id]
+        `SELECT heros.*, publishers.name AS publisher_name 
+        FROM heros
+        LEFT JOIN publishers ON heros.publisher_id = publishers.id
+        WHERE heros.id = $1`, [id]
     );
     return result.rows[0];
 };
 
-const createHero = async (name, publisher_id) => {
+const createHero = async (name, publisher_id, photo) => {
     const result = await pool.query(
-        "INSERT INTO heros (name, publisher_id) VALUES ($1, $2) RETURNING *",
-        [name, publisher_id]
+        "INSERT INTO heros (name, publisher_id, photo) VALUES ($1, $2, $3) RETURNING *",
+        [name, publisher_id, photo]
     );
     return result.rows[0];
 };
